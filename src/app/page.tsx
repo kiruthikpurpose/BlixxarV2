@@ -2,11 +2,21 @@
 
 import { useState } from 'react';
 import { User, Book, FileText, Clock, CreditCard, IdCard } from "lucide-react";
-import { FaCreditCard, FaPaypal, FaBan, FaCheckCircle, FaCamera } from 'react-icons/fa';
+import { FaCreditCard, FaPaypal, FaBan, FaCheckCircle } from 'react-icons/fa';
+import Image from 'next/image';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('profile');
   const [showPaymentOptions, setShowPaymentOptions] = useState(false);
+
+  const navigationItems = [
+    { id: 'profile', name: 'Profile', icon: User },
+    { id: 'learning', name: 'My Learning', icon: Book },
+    { id: 'assignments', name: 'Assignments', icon: FileText },
+    { id: 'attendance', name: 'Attendance', icon: Clock },
+    { id: 'billing', name: 'Billing', icon: CreditCard },
+    { id: 'idcard', name: 'ID Card', icon: IdCard },
+  ];
 
   return (
     <div className="flex w-full">
@@ -14,19 +24,12 @@ export default function Home() {
       <div className="w-72 bg-gray-800 h-screen border-r border-gray-700">
         <div className="p-6 flex items-center space-x-3">
           <div className="w-16 h-16 flex items-center justify-center">
-            <img src="./favicon.ico" alt="Favicon" className="w-full h-full" />
+            <Image src="/favicon.ico" alt="Favicon" width={64} height={64} />
           </div>
           <h1 className="text-3xl font-bold text-white">Blixxar</h1>
         </div>
         <nav className="mt-6">
-          {[
-            { id: 'profile', name: 'Profile', icon: User },
-            { id: 'learning', name: 'My Learning', icon: Book },
-            { id: 'assignments', name: 'Assignments', icon: FileText },
-            { id: 'attendance', name: 'Attendance', icon: Clock },
-            { id: 'billing', name: 'Billing', icon: CreditCard },
-            { id: 'idcard', name: 'ID Card', icon: IdCard },
-          ].map((item) => (
+          {navigationItems.map((item) => (
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
@@ -48,7 +51,6 @@ export default function Home() {
         <div className="absolute bottom-0 w-72 p-6 border-t border-gray-700 bg-gray-800">
           <div className="flex items-center space-x-3">
             <div className="relative w-12 h-12 rounded-full overflow-hidden">
-              {/* Concentric circles background */}
               <div className="absolute inset-0 bg-gradient-to-r from-[#38b6ff] to-[#6dd4ff] rounded-full animate-pulse"></div>
               <div className="absolute inset-0 bg-gradient-to-r from-[#2b9cce] to-[#4cb2e0] rounded-full animate-pulse opacity-70"></div>
               <div className="absolute inset-0 bg-gradient-to-r from-[#007bb8] to-[#0094db] rounded-full animate-pulse opacity-50"></div>
@@ -60,7 +62,7 @@ export default function Home() {
           </div>
           <div className="mt-4">
             <button
-              onClick={() => setActiveTab('profile')} // Navigate to Profile tab
+              onClick={() => setActiveTab('profile')}
               className="w-full bg-[#38b6ff] text-white py-2 rounded-md hover:bg-[#2d99cc] transition duration-200"
             >
               View Profile
@@ -95,15 +97,13 @@ function ProfileTab() {
           <p className="text-gray-400">💉 <strong>Blood Group:</strong> AB+</p>
           <p className="text-gray-400">🌊 <strong>Address:</strong> 10880 Malibu Point, Malibu, CA</p>
           <p className="text-gray-400">📞 <strong>Phone Number:</strong> (555) 123-4567</p>
-          
-          <p className="text-gray-400">👨‍🔧 <strong>Father's Name:</strong> Howard Stark</p>
-          <p className="text-gray-400">👩‍🏫 <strong>Mother's Name:</strong> Maria Stark</p>
+          <p className="text-gray-400">👨‍🔧 <strong>Father&apos;s Name:</strong> Howard Stark</p>
+          <p className="text-gray-400">👩‍🏫 <strong>Mother&apos;s Name:</strong> Maria Stark</p>
           <p className="text-gray-400">🛠️ <strong>Major:</strong> Mechanical Engineering</p>
           <p className="text-gray-400">🎂 <strong>Date of Birth:</strong> May 11, 1970</p>
-          
           <p className="text-gray-400">✈️ <strong>Hobbies:</strong> Inventing, Testing, Improving, Business</p>
-          <p className="text-gray-400">🏆 <strong>Achievements:</strong> Robotics Competition Winner, Marvel's Most Intelligent Character</p>
-          <p className="text-gray-400">📊 <strong>Skills:</strong> Robotics, Programming, Business Management </p>      
+          <p className="text-gray-400">🏆 <strong>Achievements:</strong> Robotics Competition Winner, Marvel&apos;s Most Intelligent Character</p>
+          <p className="text-gray-400">📊 <strong>Skills:</strong> Robotics, Programming, Business Management</p>
         </div>
       </div>
     </div>
@@ -130,7 +130,7 @@ function MyLearningTab() {
         <h2 className="text-3xl font-bold text-white mb-4">My Learning Progress</h2>
         <div className="space-y-4">
           {courses.map((item, index) => (
-            <div key={index} className="bg-gray-700 p-4 rounded-lg flex justify-between items-center transition-transform transform hover:scale-102">
+            <div key={index} className="bg-gray-700 p-4 rounded-lg flex justify-between items-center transition-transform hover:scale-102">
               <div className="flex items-center">
                 <span className="text-2xl mr-2">{item.icon}</span>
                 <h3 className="text-lg font-semibold text-white">{item.course}</h3>
@@ -182,7 +182,7 @@ function AssignmentsTab() {
         <h3 className="text-xl font-semibold text-white mb-2">Assignments</h3>
         <div className="space-y-4">
           {assignments.map((assignment, index) => (
-            <div key={index} className="bg-gray-700 p-4 rounded-lg flex justify-between items-center transition-transform transform hover:scale-102">
+            <div key={index} className="bg-gray-700 p-4 rounded-lg flex justify-between items-center transition-transform hover:scale-102">
               <div className="flex items-center">
                 <span className="text-2xl mr-2">{assignment.icon}</span>
                 <h3 className="text-lg font-semibold text-white">{assignment.subject}</h3>
@@ -199,7 +199,7 @@ function AssignmentsTab() {
         <h3 className="text-xl font-semibold text-white mb-2 mt-6">Practicals</h3>
         <div className="space-y-4">
           {practicals.map((practical, index) => (
-            <div key={index} className="bg-gray-700 p-4 rounded-lg flex justify-between items-center transition-transform transform hover:scale-102">
+            <div key={index} className="bg-gray-700 p-4 rounded-lg flex justify-between items-center transition-transform hover:scale-102">
               <div className="flex items-center">
                 <span className="text-2xl mr-2">{practical.icon}</span>
                 <h3 className="text-lg font-semibold text-white">{practical.subject}</h3>

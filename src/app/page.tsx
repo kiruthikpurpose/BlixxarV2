@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { User, Book, FileText, Clock, CreditCard, IdCard } from "lucide-react";
-import { FaCreditCard, FaPaypal, FaBan, FaCheckCircle } from 'react-icons/fa';
+import { FaCreditCard, FaPaypal, FaCalendar, FaApple, FaQrcode, FaMoneyCheck } from 'react-icons/fa';
 import Image from 'next/image';
 
 export default function Home() {
@@ -52,8 +52,6 @@ export default function Home() {
           <div className="flex items-center space-x-3">
             <div className="relative w-12 h-12 rounded-full overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-[#38b6ff] to-[#6dd4ff] rounded-full animate-pulse"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#2b9cce] to-[#4cb2e0] rounded-full animate-pulse opacity-70"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#007bb8] to-[#0094db] rounded-full animate-pulse opacity-50"></div>
             </div>
             <div>
               <h3 className="text-white font-medium">Tony Stark</h3>
@@ -92,16 +90,16 @@ function ProfileTab() {
         <div className="space-y-4">
           <p className="text-gray-400">🦸‍♂️ <strong>Name:</strong> Tony Stark</p>
           <p className="text-gray-400">⚙️ <strong>Department:</strong> Engineering</p>
-          <p className="text-gray-400">🎓 <strong>College:</strong> Massachusetts Institute of Technology</p>
+          <p className="text-gray-400">🏫 <strong>College:</strong> Massachusetts Institute of Technology</p>
           <p className="text-gray-400">📚 <strong>Academic Year:</strong> 2nd Year</p>
-          <p className="text-gray-400">💉 <strong>Blood Group:</strong> AB+</p>
-          <p className="text-gray-400">🌊 <strong>Address:</strong> 10880 Malibu Point, Malibu, CA</p>
+          <p className="text-gray-400">🩸 <strong>Blood Group:</strong> AB+</p>
+          <p className="text-gray-400">🏡 <strong>Address:</strong> 10880 Malibu Point, Malibu, CA</p>
           <p className="text-gray-400">📞 <strong>Phone Number:</strong> (555) 123-4567</p>
           <p className="text-gray-400">👨‍🔧 <strong>Father&apos;s Name:</strong> Howard Stark</p>
           <p className="text-gray-400">👩‍🏫 <strong>Mother&apos;s Name:</strong> Maria Stark</p>
           <p className="text-gray-400">🛠️ <strong>Major:</strong> Mechanical Engineering</p>
-          <p className="text-gray-400">🎂 <strong>Date of Birth:</strong> May 11, 1970</p>
-          <p className="text-gray-400">✈️ <strong>Hobbies:</strong> Inventing, Testing, Improving, Business</p>
+          <p className="text-gray-400">🎂 <strong>Date of Birth:</strong> May 11, 2005</p>
+          <p className="text-gray-400">✈️ <strong>Hobbies:</strong> Inventing, Designing, Coding, Business</p>
           <p className="text-gray-400">🏆 <strong>Achievements:</strong> Robotics Competition Winner, Marvel&apos;s Most Intelligent Character</p>
           <p className="text-gray-400">📊 <strong>Skills:</strong> Robotics, Programming, Business Management</p>
         </div>
@@ -114,9 +112,9 @@ function MyLearningTab() {
   const courses = [
     { course: 'Web Development', progress: 75, icon: '🌐' },
     { course: 'Data Science', progress: 60, icon: '📊' },
-    { course: 'Machine Learning', progress: 50, icon: '🤖' },
+    { course: 'Machine Learning', progress: 50, icon: '🧮' },
     { course: 'Artificial Intelligence', progress: 30, icon: '🧠' },
-    { course: 'Blockchain Technology', progress: 80, icon: '🔗' },
+    { course: 'Blockchain Technology', progress: 80, icon: '⛓️' },
     { course: 'Robotics', progress: 90, icon: '🤖' },
     { course: 'Cybersecurity', progress: 70, icon: '🛡️' },
     { course: 'Graphic Design', progress: 65, icon: '🎨' },
@@ -236,18 +234,19 @@ function AttendanceTab() {
   const [absenceLog] = useState<AbsenceLog[]>([
     { subject: 'Math', date: 'October 20, 2024', period: '3rd Period' },
     { subject: 'Physics', date: 'October 18, 2024', period: '2nd Period' },
+    { subject: 'Chemistry', date: 'October 15, 2024', period: '5th Period' },
     { subject: 'Chemistry', date: 'October 15, 2024', period: '1st Period' },
   ]);
 
-  const [odRequests, setOdRequests] = useState<ODRequest[]>([]); // Holds the list of OD requests
-  const [odReason, setOdReason] = useState(''); // Holds the reason typed by the user
+  const [odRequests, setOdRequests] = useState<ODRequest[]>([]); 
+  const [odReason, setOdReason] = useState(''); 
 
   const subjects = [
-    { subject: 'Math', percentage: 95, attended: 38, total: 40 },
-    { subject: 'Physics', percentage: 90, attended: 36, total: 40 },
-    { subject: 'Chemistry', percentage: 93, attended: 37, total: 40 },
-    { subject: 'Computer Science', percentage: 89, attended: 35, total: 40 },
-    { subject: 'Engineering', percentage: 92, attended: 37, total: 40 },
+    { subject: 'Math', percentage: 90, attended: 9, total: 10 },
+    { subject: 'Physics', percentage: 90, attended: 9, total: 10 },
+    { subject: 'Chemistry', percentage: 80, attended: 8, total: 10 },
+    { subject: 'Computer Science', percentage: 100, attended: 10, total: 10 },
+    { subject: 'Engineering', percentage: 100, attended: 10, total: 10 },
   ];
 
   const handleRequestOD = () => {
@@ -264,7 +263,7 @@ function AttendanceTab() {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="bg-gray-800 rounded-xl shadow-xl p-8 border border-gray-700">
-        <h2 className="text-3xl font-bold text-white mb-6">Attendance 📚</h2>
+        <h2 className="text-3xl font-bold text-white mb-6">Attendance </h2>
 
         {/* Bar chart-like display with hover details */}
         <div className="space-y-4">
@@ -276,7 +275,7 @@ function AttendanceTab() {
               </div>
               <div className="w-full bg-gray-600 rounded-full h-4 mt-2">
                 <div
-                  className="bg-green-500 h-4 rounded-full transition-transform transform hover:scale-101" // Reduced hover effect
+                  className="bg-green-500 h-4 rounded-full transition-transform transform hover:scale-100" 
                   style={{ width: `${entry.percentage}%` }}
                   data-tooltip-content={`${entry.attended}/${entry.total} classes attended`}
                 />
@@ -287,7 +286,7 @@ function AttendanceTab() {
 
         {/* Overall Attendance Section */}
         <div className="mt-8">
-          <h3 className="text-lg text-white mb-2">Overall Attendance: 🎉</h3>
+          <h3 className="text-lg text-white mb-2">Overall Attendance: 🗓️</h3>
           <div className="w-full bg-gray-600 rounded-full h-4">
             <div
               className="bg-green-500 h-4 rounded-full"
@@ -454,22 +453,25 @@ function BillingTab({ setShowPaymentOptions, showPaymentOptions }: BillingTabPro
         </button>
         {showPaymentOptions && (
           <div className="mt-4 bg-gray-700 p-4 rounded-lg">
-            <h3 className="text-lg text-white mb-2">Payment Options 🛠️:</h3>
+            <h3 className="text-lg text-white mb-2">Payment Options 🪙:</h3>
             <ul className="text-gray-400 space-y-2">
               <li className="flex items-center">
-                <FaCreditCard className="mr-2 text-[#38b6ff]" /> Credit Card 💳
+                <FaCreditCard className="mr-2 text-[#38b6ff]" /> Credit Card
               </li>
               <li className="flex items-center">
-                <FaPaypal className="mr-2 text-[#38b6ff]" /> PayPal 🪙
+                <FaPaypal className="mr-2 text-[#38b6ff]" /> PayPal
               </li>
               <li className="flex items-center">
-                <FaBan className="mr-2 text-[#38b6ff]" /> Bank Transfer 🏦
+                <FaApple className="mr-2 text-[#38b6ff]" /> Apple Pay
               </li>
               <li className="flex items-center">
-                <FaCheckCircle className="mr-2 text-[#38b6ff]" /> UPI (QR Code) 📱
+                <FaMoneyCheck className="mr-2 text-[#38b6ff]" /> Bank Transfer
               </li>
               <li className="flex items-center">
-                <FaCheckCircle className="mr-2 text-[#38b6ff]" /> GrayQuest (Zero Interest EMI) 🏦
+                <FaQrcode className="mr-2 text-[#38b6ff]" /> UPI
+              </li>
+              <li className="flex items-center">
+                <FaCalendar className="mr-2 text-[#38b6ff]" /> GrayQuest (Zero Interest EMI)
               </li>
             </ul>
           </div>
@@ -523,8 +525,7 @@ function IDCardTab() {
           </div>
         </div>
         <div className="mt-4">
-          <p className="text-white text-center">This card is issued by Stark University and is valid until graduation.</p>
-          <p className="text-white text-center">Unauthorized alterations are prohibited.</p>
+          <p className="text-white text-center">This card is issued by Massachusetts Institute of Technology and is valid until graduation. Unauthorized alterations are prohibited.</p>
         </div>
       </div>
     </div>

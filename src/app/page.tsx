@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react';
-import { User, Book, FileText, Clock, CreditCard, IdCard } from "lucide-react";
+import { User, Book, FileText, Clock, CreditCard, IdCard, BookOpenCheckIcon } from "lucide-react";
 import { FaCreditCard, FaPaypal, FaCalendar, FaApple, FaQrcode, FaMoneyCheck } from 'react-icons/fa';
 import Image from 'next/image';
 
@@ -16,6 +16,7 @@ export default function Home() {
     { id: 'attendance', name: 'Attendance', icon: Clock },
     { id: 'billing', name: 'Billing', icon: CreditCard },
     { id: 'idcard', name: 'ID Card', icon: IdCard },
+    { id: 'examresults', name: 'Exam Results', icon: BookOpenCheckIcon },
   ];
 
   return (
@@ -77,6 +78,7 @@ export default function Home() {
         {activeTab === 'billing' && <BillingTab setShowPaymentOptions={setShowPaymentOptions} showPaymentOptions={showPaymentOptions} />}
         {activeTab === 'idcard' && <IDCardTab />}
         {activeTab === 'learning' && <MyLearningTab />}
+        {activeTab === 'examresults' && <ExamResults />}
       </div>
     </div>
   );
@@ -527,6 +529,50 @@ function IDCardTab() {
         <div className="mt-4">
           <p className="text-white text-center">This card is issued by Massachusetts Institute of Technology and is valid until graduation. Unauthorized alterations are prohibited.</p>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function ExamResults() {
+  const examResults = [
+    { subject: 'Mathematics', points: 9, grade: 'O' },
+    { subject: 'Physics', points: 10, grade: 'A+' },
+    { subject: 'Chemistry', points: 9, grade: 'A+' },
+    { subject: 'Computer Science', points: 10, grade: 'O' },
+    { subject: 'Mechanical Engineering', points: 9, grade: 'A+' }
+  ];
+
+  const totalPoints = examResults.reduce((acc, result) => acc + result.points, 0);
+  const averagePoints = (totalPoints / examResults.length).toFixed(2);
+  const cgpa = (Number(averagePoints)).toFixed(2);
+
+  return (
+    <div className="max-w-4xl mx-auto mt-8">
+      <div className="bg-gray-800 rounded-xl shadow-xl p-8 border border-gray-700">
+        <h2 className="text-3xl font-bold text-white mb-6">Exam Results 📝</h2>
+        <table className="min-w-full bg-gray-700 rounded-lg overflow-hidden">
+          <thead>
+            <tr>
+              <th className="px-4 py-2 text-left text-white">Subject</th>
+              <th className="px-4 py-2 text-left text-white">Points</th>
+              <th className="px-4 py-2 text-left text-white">Grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            {examResults.map((result, index) => (
+              <tr key={index} className="border-t border-gray-600">
+                <td className="px-4 py-3 text-gray-400">{result.subject}</td>
+                <td className="px-4 py-3 text-gray-400">{result.points}</td>
+                <td className="px-4 py-3 text-gray-400">{result.grade}</td>
+              </tr>
+            ))}
+            <tr className="border-t border-gray-600">
+              <td className="px-4 py-3 text-gray-400 font-bold">SGPA: {averagePoints}</td>
+              <td className="px-4 py-3 text-gray-400 font-bold">CGPA: {cgpa}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );
